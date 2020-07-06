@@ -18,7 +18,9 @@ class AdViewDetailViewController: UIViewController {
                 imageView.downloaded(from: adModel.images.smallPicture)
                 descTextView.text = adModel.desc
                 priceLabel.text = CurrencyFormatter.getFrenchCurrencyPrice(for: adModel.price)
-                dateLabel.text = adModel.creationDate
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMMM yyyy hh:mm"
+                dateLabel.text = dateFormatter.string(from: adModel.creationDate)
                 if adModel.isUrgent {
                     urgentLabel.isHidden = false
                 } else {
@@ -98,7 +100,7 @@ class AdViewDetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
@@ -119,6 +121,7 @@ class AdViewDetailViewController: UIViewController {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.font = UIFont.systemFont(ofSize: 14)
+        textView.layer.addBorder(edge: .top, color: .lightGray, thickness: 3.0)
         return textView
     }()
 
@@ -187,10 +190,10 @@ class AdViewDetailViewController: UIViewController {
 
     private func configureImageView() {
         mainStackView.addArrangedSubview(imageView)
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-//        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 150.0)
-//        NSLayoutConstraint.activate([heightConstraint])
+        imageView.backgroundColor = .lightGray
+        imageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
     }
 
     private func configureDescTextView() {

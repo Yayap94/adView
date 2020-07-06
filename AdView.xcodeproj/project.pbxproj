@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		B211B3E324AE45EC00E6717C /* AdViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211B3E224AE45EC00E6717C /* AdViewDetailViewController.swift */; };
-		B23E025E24B1E0230071D576 /* AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E025D24B1E0230071D576 /* AnchorExtension.swift */; };
+		B23E025E24B1E0230071D576 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E025D24B1E0230071D576 /* UIView.swift */; };
 		B23E026024B1E0630071D576 /* AdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E025F24B1E0630071D576 /* AdCell.swift */; };
 		B23E026224B1E26C0071D576 /* AdCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026124B1E26C0071D576 /* AdCategory.swift */; };
 		B23E026524B1E5C30071D576 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026424B1E5C30071D576 /* CategoryService.swift */; };
 		B23E026724B1E5DE0071D576 /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026624B1E5DE0071D576 /* AdService.swift */; };
 		B23E026924B1E5F20071D576 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026824B1E5F20071D576 /* NetworkService.swift */; };
 		B23E026B24B1F9F80071D576 /* AdImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026A24B1F9F80071D576 /* AdImages.swift */; };
-		B23E026E24B1FB0C0071D576 /* Downloaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026D24B1FB0C0071D576 /* Downloaded.swift */; };
+		B23E026E24B1FB0C0071D576 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E026D24B1FB0C0071D576 /* ImageView.swift */; };
 		B23E027124B2999F0071D576 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E027024B2999F0071D576 /* CurrencyFormatter.swift */; };
+		B23E027324B2A52C0071D576 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E027224B2A52C0071D576 /* CALayer.swift */; };
 		B27BEF8824AE3ADB00C473D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27BEF8724AE3ADB00C473D7 /* AppDelegate.swift */; };
 		B27BEF8A24AE3ADB00C473D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27BEF8924AE3ADB00C473D7 /* SceneDelegate.swift */; };
 		B27BEF9124AE3ADC00C473D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27BEF9024AE3ADC00C473D7 /* Assets.xcassets */; };
@@ -38,15 +39,16 @@
 
 /* Begin PBXFileReference section */
 		B211B3E224AE45EC00E6717C /* AdViewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewDetailViewController.swift; sourceTree = "<group>"; };
-		B23E025D24B1E0230071D576 /* AnchorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorExtension.swift; sourceTree = "<group>"; };
+		B23E025D24B1E0230071D576 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B23E025F24B1E0630071D576 /* AdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCell.swift; sourceTree = "<group>"; };
 		B23E026124B1E26C0071D576 /* AdCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCategory.swift; sourceTree = "<group>"; };
 		B23E026424B1E5C30071D576 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		B23E026624B1E5DE0071D576 /* AdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		B23E026824B1E5F20071D576 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B23E026A24B1F9F80071D576 /* AdImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdImages.swift; sourceTree = "<group>"; };
-		B23E026D24B1FB0C0071D576 /* Downloaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloaded.swift; sourceTree = "<group>"; };
+		B23E026D24B1FB0C0071D576 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		B23E027024B2999F0071D576 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		B23E027224B2A52C0071D576 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		B27BEF8424AE3ADB00C473D7 /* AdView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27BEF8724AE3ADB00C473D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27BEF8924AE3ADB00C473D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,8 +93,9 @@
 		B23E026C24B1FAFA0071D576 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B23E025D24B1E0230071D576 /* AnchorExtension.swift */,
-				B23E026D24B1FB0C0071D576 /* Downloaded.swift */,
+				B23E025D24B1E0230071D576 /* UIView.swift */,
+				B23E026D24B1FB0C0071D576 /* ImageView.swift */,
+				B23E027224B2A52C0071D576 /* CALayer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,15 +275,16 @@
 				B23E026B24B1F9F80071D576 /* AdImages.swift in Sources */,
 				B23E026924B1E5F20071D576 /* NetworkService.swift in Sources */,
 				B23E026024B1E0630071D576 /* AdCell.swift in Sources */,
-				B23E026E24B1FB0C0071D576 /* Downloaded.swift in Sources */,
+				B23E026E24B1FB0C0071D576 /* ImageView.swift in Sources */,
 				B27BEF8824AE3ADB00C473D7 /* AppDelegate.swift in Sources */,
 				B23E027124B2999F0071D576 /* CurrencyFormatter.swift in Sources */,
 				B23E026724B1E5DE0071D576 /* AdService.swift in Sources */,
 				B27BEF8A24AE3ADB00C473D7 /* SceneDelegate.swift in Sources */,
 				B23E026524B1E5C30071D576 /* CategoryService.swift in Sources */,
+				B23E027324B2A52C0071D576 /* CALayer.swift in Sources */,
 				B2B32D3824AE3CCF0006B8E3 /* AdViewListViewController.swift in Sources */,
 				B2B32D4024AE45420006B8E3 /* AdModel.swift in Sources */,
-				B23E025E24B1E0230071D576 /* AnchorExtension.swift in Sources */,
+				B23E025E24B1E0230071D576 /* UIView.swift in Sources */,
 				B23E026224B1E26C0071D576 /* AdCategory.swift in Sources */,
 				B211B3E324AE45EC00E6717C /* AdViewDetailViewController.swift in Sources */,
 			);

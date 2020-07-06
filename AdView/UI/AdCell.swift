@@ -33,7 +33,7 @@ class AdCell: UITableViewCell {
 
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .darkText
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -78,15 +78,13 @@ class AdCell: UITableViewCell {
 
         backgroundColor = .clear
         layer.masksToBounds = false
-        layer.shadowOpacity = 0.3
+        layer.shadowOpacity = 0.4
         layer.shadowRadius = 3
-        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOffset = .zero
         layer.shadowColor = UIColor.black.cgColor
 
-        // add corner radius on `contentView`
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 8
-
         contentView.addSubview(containerView)
 
         containerView.anchor(top: topAnchor,

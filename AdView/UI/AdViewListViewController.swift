@@ -6,6 +6,7 @@
 //  Copyright © 2020 Nicolas SABELLA. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class AdViewListViewController: UIViewController {
@@ -21,13 +22,14 @@ class AdViewListViewController: UIViewController {
     var adModelData: [AdModel] = []
     var refreshControl = UIRefreshControl()
 
+    var ascendentSort = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //Init all datas
         adModelService.getAllAdModels()
         adCategoryService.getAllAdCategories()
-
 
         title = "Annonces"
         setupAdViewList()
@@ -41,6 +43,8 @@ class AdViewListViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: "DataUpdated"),
                                                object: nil)
         adViewTableview.addSubview(refreshControl)
+
+        setutpNavButton()
     }
 
     @objc func dataUpdated() {
@@ -69,6 +73,70 @@ class AdViewListViewController: UIViewController {
     private func configureListView() {
         adViewTableview.delegate = self
         adViewTableview.dataSource = self
+    }
+
+    private func setutpNavButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Trier", style: .plain, target: self, action: #selector(sortTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+    }
+
+    @objc private func sortTapped() {
+        if ascendentSort {
+            adModelData = adModelService.getAdModelSortByDate(ascendent: false)
+            navigationItem.rightBarButtonItem?.title = "Trier↓"
+        } else {
+            adModelData = adModelService.getAdModelSortByDate(ascendent: true)
+            navigationItem.rightBarButtonItem?.title = "Trier↑"
+        }
+        ascendentSort = !ascendentSort
+        adViewTableview.reloadData()
+    }
+
+    @objc private func filterTapped() {
+
+        let alertViewController = UIAlertController(title: "Filtrer par catégorie :", message: "test", preferredStyle: .actionSheet)
+        let pickerView = UIPickerView(frame: CGRect(x: 0.0, y:-10.0, width:0.0 , height: 0.0))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+
+        let filterAction = UIAlertAction(title: "Filtrer", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
+
+        alertViewController.addAction(filterAction)
+        alertViewController.addAction(cancelAction)
+        alertViewController.view.addSubview(pickerView)
+
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.anchor(top: alertViewController.view.topAnchor,
+                          left: alertViewController.view.leftAnchor,
+                          bottom: alertViewController.view.bottomAnchor,
+                          right: alertViewController.view.rightAnchor,
+                          paddingTop: 0.0,
+                          paddingLeft: 0.0,
+                          paddingBottom: 0.0,
+                          paddingRight: 0.0,
+                          width: 0.0,
+                          height: 200.0,
+                          enableInsets: false)
+
+        present(alertViewController, animated: true, completion: nil)
+    }
+}
+
+extension AdViewListViewController: UIPickerViewDelegate {
+
+}
+
+extension AdViewListViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return adCategoryService.getAdCategories().count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return adCategoryService.getAdCategories()[row].name
     }
 }
 

@@ -16,7 +16,7 @@ class AdModel: Codable {
     let categoryId: Int
     let isUrgent: Bool
     let images: AdImages
-    let creationDate: String
+    let creationDate: Date
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -38,6 +38,9 @@ class AdModel: Codable {
         desc = try container.decode(String.self, forKey: .desc)
         isUrgent = try container.decode(Bool.self, forKey: .isUrgent)
         images = try container.decode(AdImages.self, forKey: .images)
-        creationDate = try container.decode(String.self, forKey: .creationDate)
+        let dateStr = try container.decode(String.self, forKey: .creationDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        creationDate = dateFormatter.date(from: dateStr) ?? Date()
     }
 }

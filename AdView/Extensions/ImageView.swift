@@ -1,5 +1,5 @@
 //
-//  Downloaded.swift
+//  ImageView.swift
 //  AdView
 //
 //  Created by Nicolas SABELLA on 05/07/2020.

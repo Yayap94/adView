@@ -39,4 +39,16 @@ class AdService {
     func getAdModels() -> [AdModel] {
         return adModels
     }
+
+    func getAdModelSortByDate(ascendent: Bool) -> [AdModel] {
+        return adModels.sorted { (leftAd, rightAd) in
+            if ascendent {
+                return leftAd.creationDate < rightAd.creationDate
+            } else {
+                return leftAd.creationDate > rightAd.creationDate
+            }
+        }.sorted { (leftAd, rightAd) in
+            return leftAd.isUrgent && !rightAd.isUrgent
+        }
+    }
 }

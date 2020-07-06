@@ -9,9 +9,9 @@
 import Foundation
 
 class CategoryService {
-    var adCategories: [AdCategory] = []
-    let networkService = NetworkService()
-    let adCategoryUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
+    private var adCategories: [AdCategory] = []
+    private let networkService = NetworkService()
+    private let adCategoryUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 
     func getAllAdCategories() {
         networkService.loadJson(fromURLString: adCategoryUrl) { (result) in
@@ -33,6 +33,10 @@ class CategoryService {
         } catch {
             print("decode error")
         }
+    }
+
+    func getAdCategories() -> [AdCategory] {
+        return adCategories
     }
 
     func getCategory(for id: Int) -> AdCategory? {
