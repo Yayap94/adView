@@ -13,7 +13,7 @@ class AdModel: Codable {
     let title: String
     let desc: String
     let price: Int
-//    let category: AdCategory
+    let categoryId: Int
     let isUrgent: Bool
     let images: AdImages
     let creationDate: String
@@ -22,7 +22,7 @@ class AdModel: Codable {
         case id
         case title
         case price
-//        case category
+        case categoryId = "category_id"
         case desc = "description"
         case images = "images_url"
         case isUrgent = "is_urgent"
@@ -33,7 +33,7 @@ class AdModel: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
         title = try container.decode(String.self, forKey: .title)
-//        category = try container.decode(AdCategory.self, forKey: .category)
+        categoryId = try container.decode(Int.self, forKey: .categoryId)
         price = try container.decode(Int.self, forKey: .price)
         desc = try container.decode(String.self, forKey: .desc)
         isUrgent = try container.decode(Bool.self, forKey: .isUrgent)

@@ -80,6 +80,8 @@ extension AdViewListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let adModel = adModelData[indexPath.row]
         let detailsViewController = AdViewDetailViewController()
+        detailsViewController.adModel = adModel
+        detailsViewController.category = adCategoryService.getCategory(for: adModel.categoryId)
         self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
@@ -92,9 +94,15 @@ extension AdViewListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = adViewTableview.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? AdCell {
             let adModel = adModelData[indexPath.row]
-            cell.configure(with: adModel)
+            cell.configure(with: adModel, categoryService: adCategoryService)
             return cell
         }
         return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.masksToBounds = true
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
     }
 }

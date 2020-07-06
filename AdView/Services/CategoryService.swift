@@ -9,7 +9,7 @@
 import Foundation
 
 class CategoryService {
-    var adCategory: [AdCategory] = []
+    var adCategories: [AdCategory] = []
     let networkService = NetworkService()
     let adCategoryUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 
@@ -28,10 +28,14 @@ class CategoryService {
         do {
             let decodedData = try JSONDecoder().decode([AdCategory].self, from: jsonData)
             if decodedData.count > 0 {
-                adCategory = decodedData
+                adCategories = decodedData
             }
         } catch {
             print("decode error")
         }
+    }
+
+    func getCategory(for id: Int) -> AdCategory? {
+        return adCategories.first { $0.categoryId == id }
     }
 }
