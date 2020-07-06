@@ -10,7 +10,7 @@ import UIKit
 
 class AdViewDetailViewController: UIViewController {
 
-    // Model
+//MARK: - Model Vars
     var adModel: AdModel? {
         didSet {
             if let adModel = adModel {
@@ -38,10 +38,9 @@ class AdViewDetailViewController: UIViewController {
         }
     }
 
-    // UI Conponents
+// MARK: - UI Vars
     var scrollView = UIScrollView()
 
-    /// StackViews
     var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -50,6 +49,7 @@ class AdViewDetailViewController: UIViewController {
         stackView.spacing = 10.0
         return stackView
     }()
+
     var categoryAndDateStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -58,6 +58,7 @@ class AdViewDetailViewController: UIViewController {
         stackView.spacing = 1.0
         return stackView
     }()
+
     var priceAndUrgentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -71,7 +72,7 @@ class AdViewDetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
@@ -81,7 +82,7 @@ class AdViewDetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -90,7 +91,7 @@ class AdViewDetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textAlignment = .center
+        label.textAlignment = .right
         label.numberOfLines = 0
         label.text = "Urgent"
         return label
@@ -100,7 +101,7 @@ class AdViewDetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -114,6 +115,15 @@ class AdViewDetailViewController: UIViewController {
         label.text = "Urgent"
         return label
     }()
+    private let descLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.text = "Description :"
+        return label
+    }()
 
     private let descTextView: UITextView = {
         let textView = UITextView()
@@ -121,7 +131,7 @@ class AdViewDetailViewController: UIViewController {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.font = UIFont.systemFont(ofSize: 14)
-        textView.layer.addBorder(edge: .top, color: .lightGray, thickness: 3.0)
+        textView.backgroundColor = .backGround
         return textView
     }()
 
@@ -129,22 +139,29 @@ class AdViewDetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .center
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupEmptyBackButton()
+        view.backgroundColor = .backGround
+        title = "Détails"
 
         configureScrollView()
         configureMainStackView()
         configureImageView()
         configureTitleLabel()
         configureCategoryAndDateStackView()
-        configurePriceAndDateStackView()
+        configurePriceAndUrgentStackView()
         configureDescTextView()
     }
+}
 
+//MARK: - Setup UI
+
+extension AdViewDetailViewController {
     private func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -170,33 +187,67 @@ class AdViewDetailViewController: UIViewController {
 
     }
 
+    private func configureImageView() {
+        mainStackView.addArrangedSubview(imageView)
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+    }
+
     private func configureTitleLabel() {
-        mainStackView.addArrangedSubview(titleLabel)
+        mainStackView.addArrangedSubview(getContainerView(for: titleLabel, leftPadding: 8.0, rightPadding: 8.0))
     }
 
     private func configureCategoryAndDateStackView() {
         mainStackView.addArrangedSubview(categoryAndDateStackView)
 
-        categoryAndDateStackView.addArrangedSubview(categoryLabel)
-        categoryAndDateStackView.addArrangedSubview(dateLabel)
+        categoryAndDateStackView.addArrangedSubview(getContainerView(for: categoryLabel, leftPadding: 8.0))
+        categoryAndDateStackView.addArrangedSubview(getContainerView(for: dateLabel, rightPadding: 8.0))
     }
 
-    private func configurePriceAndDateStackView() {
+    private func configurePriceAndUrgentStackView() {
         mainStackView.addArrangedSubview(priceAndUrgentStackView)
 
-        priceAndUrgentStackView.addArrangedSubview(priceLabel)
-        priceAndUrgentStackView.addArrangedSubview(urgentLabel)
-    }
-
-    private func configureImageView() {
-        mainStackView.addArrangedSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        imageView.backgroundColor = .lightGray
-        imageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: priceLabel, leftPadding: 8.0))
+        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: urgentLabel, rightPadding: 8.0))
     }
 
     private func configureDescTextView() {
+        descLabel.addBorder(toSide: .top, withColor: UIColor.lightGray.cgColor, andThickness: 2)
+        mainStackView.addArrangedSubview(getContainerView(for: descLabel, leftPadding: 8.0))
         mainStackView.addArrangedSubview(descTextView)
+    }
+}
+
+// MARK: - Utils
+
+extension AdViewDetailViewController {
+    private func setupEmptyBackButton() {
+        let barButton = UIBarButtonItem()
+        barButton.title = ""
+        barButton.tintColor = .orange
+        navigationController?.navigationBar.topItem?.backBarButtonItem = barButton
+    }
+
+    private func getContainerView(for view: UIView,
+                                  with topPadding: CGFloat = 0.0,
+                                  leftPadding: CGFloat = 0.0,
+                                  bottomPadding: CGFloat = 0.0,
+                                  rightPadding: CGFloat = 0.0) -> UIView {
+        let containerView = UIView()
+        containerView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.anchor(top: containerView.topAnchor,
+                             left: containerView.leftAnchor,
+                             bottom: containerView.bottomAnchor,
+                             right: containerView.rightAnchor,
+                             paddingTop: topPadding,
+                             paddingLeft: leftPadding,
+                             paddingBottom: bottomPadding,
+                             paddingRight: rightPadding,
+                             width: 0.0,
+                             height: 0.0,
+                             enableInsets: false)
+        return containerView
     }
 }

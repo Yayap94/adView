@@ -45,4 +45,24 @@ extension UIView {
 
     }
 
+
+    func addBorder(toSide side: UIRectEdge, withColor color: CGColor, andThickness thickness: CGFloat) {
+
+        let border = CALayer()
+        border.backgroundColor = color
+        switch side {
+        case .left:
+            border.frame = CGRect(x: 0.0, y: 0.0, width: thickness, height: frame.height)
+        case .right:
+            border.frame = CGRect(x: frame.width-thickness, y: 0.0, width: thickness, height: frame.height)
+        case .top:
+            border.frame = CGRect(x: 0.0, y: 0.0, width: frame.width, height: thickness)
+        case .bottom:
+            border.frame = CGRect(x: 0.0, y: frame.height-thickness, width: frame.width, height: thickness)
+        default:
+            break
+        }
+
+        layer.addSublayer(border)
+    }
 }

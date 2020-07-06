@@ -42,4 +42,8 @@ class CategoryService {
     func getCategory(for id: Int) -> AdCategory? {
         return adCategories.first { $0.categoryId == id }
     }
+
+    func getCategory(for name: String) -> AdCategory? {
+        return adCategories.first { $0.name == name }
+    }
 }

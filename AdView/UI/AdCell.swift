@@ -83,7 +83,7 @@ class AdCell: UITableViewCell {
         layer.shadowOffset = .zero
         layer.shadowColor = UIColor.black.cgColor
 
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .backGround
         contentView.layer.cornerRadius = 8
         contentView.addSubview(containerView)
 

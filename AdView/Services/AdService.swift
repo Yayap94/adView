@@ -40,8 +40,10 @@ class AdService {
         return adModels
     }
 
-    func getAdModelSortByDate(ascendent: Bool) -> [AdModel] {
-        return adModels.sorted { (leftAd, rightAd) in
+    func getAdModelSortByDate(ascendent: Bool,
+                              for adModelsToSort: [AdModel]? = nil) -> [AdModel] {
+        let models = adModelsToSort == nil ? adModels : adModelsToSort!
+        return models.sorted { (leftAd, rightAd) in
             if ascendent {
                 return leftAd.creationDate < rightAd.creationDate
             } else {
@@ -50,5 +52,11 @@ class AdService {
         }.sorted { (leftAd, rightAd) in
             return leftAd.isUrgent && !rightAd.isUrgent
         }
+    }
+
+    func getFilteredAdModel(for categoryId: Int,
+                            in adModelsToFilter: [AdModel]? = nil) -> [AdModel] {
+        let models = adModelsToFilter == nil ? adModels : adModelsToFilter!
+        return models.filter { $0.categoryId == categoryId }
     }
 }
