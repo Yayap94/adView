@@ -195,27 +195,26 @@ extension AdViewDetailViewController {
     }
 
     private func configureTitleLabel() {
-        mainStackView.addArrangedSubview(getContainerView(for: titleLabel, leftPadding: 8.0, rightPadding: 8.0))
+        mainStackView.addArrangedSubview(getContainerView(for: titleLabel, leftPadding: 16.0, rightPadding: 16.0))
     }
 
     private func configureCategoryAndDateStackView() {
         mainStackView.addArrangedSubview(categoryAndDateStackView)
 
-        categoryAndDateStackView.addArrangedSubview(getContainerView(for: categoryLabel, leftPadding: 8.0))
-        categoryAndDateStackView.addArrangedSubview(getContainerView(for: dateLabel, rightPadding: 8.0))
+        categoryAndDateStackView.addArrangedSubview(getContainerView(for: categoryLabel, leftPadding: 16.0))
+        categoryAndDateStackView.addArrangedSubview(getContainerView(for: dateLabel, rightPadding: 16.0))
     }
 
     private func configurePriceAndUrgentStackView() {
         mainStackView.addArrangedSubview(priceAndUrgentStackView)
 
-        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: priceLabel, leftPadding: 8.0))
-        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: urgentLabel, rightPadding: 8.0))
+        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: priceLabel, leftPadding: 16.0))
+        priceAndUrgentStackView.addArrangedSubview(getContainerView(for: urgentLabel, rightPadding: 16.0))
     }
 
     private func configureDescTextView() {
-        descLabel.addBorder(toSide: .top, withColor: UIColor.lightGray.cgColor, andThickness: 2)
-        mainStackView.addArrangedSubview(getContainerView(for: descLabel, leftPadding: 8.0))
-        mainStackView.addArrangedSubview(descTextView)
+        mainStackView.addArrangedSubview(getContainerView(for: descLabel, leftPadding: 16.0))
+        mainStackView.addArrangedSubview(getContainerView(for: descTextView, leftPadding: 12.0, rightPadding: 12.0))
     }
 }
 

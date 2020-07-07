@@ -76,7 +76,7 @@ class AdViewListViewController: UIViewController {
     }
 
     private func setutpNavButton() {
-        let rightBarButton = UIBarButtonItem(title: "Ascendant↑",
+        let rightBarButton = UIBarButtonItem(title: "Date↑",
                                              style: .plain,
                                              target: self,
                                              action: #selector(sortTapped))
@@ -93,7 +93,7 @@ class AdViewListViewController: UIViewController {
     @objc private func sortTapped() {
         ascendentSort = !ascendentSort
         adModelData = adModelService.getAdModelSortByDate(ascendent: ascendentSort, for: adModelData)
-        navigationItem.rightBarButtonItem?.title = ascendentSort ? "Ascendant↑" : "Descendant↓"
+        navigationItem.rightBarButtonItem?.title = ascendentSort ? "Date↑" : "Date↓"
         adViewTableview.reloadData()
     }
 
@@ -108,7 +108,7 @@ class AdViewListViewController: UIViewController {
             let selectedCategory = self.adCategoryService.getAdCategories()[selectedRow]
             DispatchQueue.main.async {
                 self.adModelData = self.adModelService.getFilteredAdModel(for: selectedCategory.categoryId,
-                                                                          in: self.adModelData)
+                                                                          in: self.adModelService.getAdModelSortByDate(ascendent: true))
                 self.adViewTableview.reloadData()
             }
         })
