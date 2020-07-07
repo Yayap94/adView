@@ -33,6 +33,7 @@ class AdViewListViewController: UIViewController {
         adCategoryService.getAllAdCategories()
 
         title = "Annonces"
+        setutpNavButton()
         setupAdViewList()
         configureListView()
         adViewTableview.register(AdCell.self, forCellReuseIdentifier: cellId)
@@ -44,8 +45,6 @@ class AdViewListViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: "DataUpdated"),
                                                object: nil)
         adViewTableview.addSubview(refreshControl)
-
-        setutpNavButton()
     }
 
     @objc func dataUpdated() {
@@ -77,7 +76,7 @@ class AdViewListViewController: UIViewController {
     }
 
     private func setutpNavButton() {
-        let rightBarButton = UIBarButtonItem(title: "Ascendant",
+        let rightBarButton = UIBarButtonItem(title: "Ascendant↑",
                                              style: .plain,
                                              target: self,
                                              action: #selector(sortTapped))
@@ -92,21 +91,14 @@ class AdViewListViewController: UIViewController {
     }
 
     @objc private func sortTapped() {
-        if ascendentSort {
-            adModelData = adModelService.getAdModelSortByDate(ascendent: false, for: adModelData)
-            navigationItem.rightBarButtonItem?.title = "Descendant↓"
-        } else {
-            adModelData = adModelService.getAdModelSortByDate(ascendent: true, for: adModelData)
-            navigationItem.rightBarButtonItem?.title = "Ascendant↑"
-        }
         ascendentSort = !ascendentSort
+        adModelData = adModelService.getAdModelSortByDate(ascendent: ascendentSort, for: adModelData)
+        navigationItem.rightBarButtonItem?.title = ascendentSort ? "Ascendant↑" : "Descendant↓"
         adViewTableview.reloadData()
     }
 
     @objc private func filterTapped() {
-
-
-        let alertViewController = UIAlertController(title: "Filtrer:", message: nil, preferredStyle: .actionSheet)
+        let alertViewController = UIAlertController(title: "Categorie:", message: nil, preferredStyle: .actionSheet)
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -118,7 +110,6 @@ class AdViewListViewController: UIViewController {
                 self.adModelData = self.adModelService.getFilteredAdModel(for: selectedCategory.categoryId,
                                                                           in: self.adModelData)
                 self.adViewTableview.reloadData()
-                
             }
         })
         let cancelAction = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)

@@ -25,7 +25,7 @@ class AdService {
         }
     }
 
-    private func parseAdModel(jsonData: Data) {
+    func parseAdModel(jsonData: Data) {
         do {
             let decodedData = try JSONDecoder().decode([AdModel].self, from: jsonData)
             if decodedData.count > 0 {

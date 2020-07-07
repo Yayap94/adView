@@ -20,6 +20,8 @@ class NetworkService {
                 }
             }
             urlSession.resume()
+        } else {
+            completion(.failure(NSError()))
         }
     }
 }

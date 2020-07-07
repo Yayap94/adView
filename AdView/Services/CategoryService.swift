@@ -24,7 +24,7 @@ class CategoryService {
         }
     }
 
-    private func parseAdModel(jsonData: Data) {
+    func parseAdModel(jsonData: Data) {
         do {
             let decodedData = try JSONDecoder().decode([AdCategory].self, from: jsonData)
             if decodedData.count > 0 {
@@ -41,9 +41,5 @@ class CategoryService {
 
     func getCategory(for id: Int) -> AdCategory? {
         return adCategories.first { $0.categoryId == id }
-    }
-
-    func getCategory(for name: String) -> AdCategory? {
-        return adCategories.first { $0.name == name }
     }
 }
